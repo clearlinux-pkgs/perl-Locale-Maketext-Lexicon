@@ -4,15 +4,17 @@
 #
 Name     : perl-Locale-Maketext-Lexicon
 Version  : 1.00
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DRTECH/Locale-Maketext-Lexicon-1.00.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DRTECH/Locale-Maketext-Lexicon-1.00.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblocale-maketext-lexicon-perl/liblocale-maketext-lexicon-perl_1.00-1.debian.tar.xz
 Summary  : 'Use other catalog formats in Maketext'
 Group    : Development/Tools
-License  : MIT
-Requires: perl-Locale-Maketext-Lexicon-bin
-Requires: perl-Locale-Maketext-Lexicon-man
+License  : GPL-2.0 MIT
+Requires: perl-Locale-Maketext-Lexicon-bin = %{version}-%{release}
+Requires: perl-Locale-Maketext-Lexicon-license = %{version}-%{release}
+Requires: perl-Locale-Maketext-Lexicon-man = %{version}-%{release}
+BuildRequires : buildreq-cpan
 
 %description
 NAME
@@ -23,10 +25,29 @@ version 1.00
 %package bin
 Summary: bin components for the perl-Locale-Maketext-Lexicon package.
 Group: Binaries
-Requires: perl-Locale-Maketext-Lexicon-man
+Requires: perl-Locale-Maketext-Lexicon-license = %{version}-%{release}
+Requires: perl-Locale-Maketext-Lexicon-man = %{version}-%{release}
 
 %description bin
 bin components for the perl-Locale-Maketext-Lexicon package.
+
+
+%package dev
+Summary: dev components for the perl-Locale-Maketext-Lexicon package.
+Group: Development
+Requires: perl-Locale-Maketext-Lexicon-bin = %{version}-%{release}
+Provides: perl-Locale-Maketext-Lexicon-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Locale-Maketext-Lexicon package.
+
+
+%package license
+Summary: license components for the perl-Locale-Maketext-Lexicon package.
+Group: Default
+
+%description license
+license components for the perl-Locale-Maketext-Lexicon package.
 
 
 %package man
@@ -38,10 +59,10 @@ man components for the perl-Locale-Maketext-Lexicon package.
 
 
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Locale-Maketext-Lexicon-1.00
-mkdir -p %{_topdir}/BUILD/Locale-Maketext-Lexicon-1.00/deblicense/
+cd ..
+%setup -q -T -D -n Locale-Maketext-Lexicon-1.00 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Locale-Maketext-Lexicon-1.00/deblicense/
 
 %build
@@ -66,10 +87,13 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/LICENSE
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -78,31 +102,30 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract/Plugin/Base.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract/Plugin/FormFu.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract/Plugin/Generic.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract/Plugin/Haml.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract/Plugin/Mason.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract/Plugin/PPI.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract/Plugin/Perl.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract/Plugin/TT2.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract/Plugin/TextTemplate.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract/Plugin/YAML.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Extract/Run.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Lexicon.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Lexicon/Auto.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Lexicon/Gettext.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Lexicon/Msgcat.pm
-/usr/lib/perl5/site_perl/5.26.1/Locale/Maketext/Lexicon/Tie.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract/Plugin/Base.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract/Plugin/FormFu.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract/Plugin/Generic.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract/Plugin/Haml.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract/Plugin/Mason.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract/Plugin/PPI.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract/Plugin/Perl.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract/Plugin/TT2.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract/Plugin/TextTemplate.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract/Plugin/YAML.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Extract/Run.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Lexicon.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Lexicon/Auto.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Lexicon/Gettext.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Lexicon/Msgcat.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Locale/Maketext/Lexicon/Tie.pm
 
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/xgettext.pl
 
-%files man
+%files dev
 %defattr(-,root,root,-)
-/usr/share/man/man1/xgettext.pl.1
 /usr/share/man/man3/Locale::Maketext::Extract.3
 /usr/share/man/man3/Locale::Maketext::Extract::Plugin::Base.3
 /usr/share/man/man3/Locale::Maketext::Extract::Plugin::FormFu.3
@@ -120,3 +143,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/share/man/man3/Locale::Maketext::Lexicon::Gettext.3
 /usr/share/man/man3/Locale::Maketext::Lexicon::Msgcat.3
 /usr/share/man/man3/Locale::Maketext::Lexicon::Tie.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/LICENSE
+/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/deblicense_copyright
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/xgettext.pl.1
