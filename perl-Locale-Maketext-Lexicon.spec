@@ -102,23 +102,23 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract/Plugin/Base.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract/Plugin/FormFu.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract/Plugin/Generic.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract/Plugin/Haml.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract/Plugin/Mason.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract/Plugin/PPI.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract/Plugin/Perl.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract/Plugin/TT2.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract/Plugin/TextTemplate.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract/Plugin/YAML.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Extract/Run.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Lexicon.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Lexicon/Auto.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Lexicon/Gettext.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Lexicon/Msgcat.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Locale/Maketext/Lexicon/Tie.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract/Plugin/Base.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract/Plugin/FormFu.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract/Plugin/Generic.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract/Plugin/Haml.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract/Plugin/Mason.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract/Plugin/PPI.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract/Plugin/Perl.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract/Plugin/TT2.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract/Plugin/TextTemplate.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract/Plugin/YAML.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Extract/Run.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Lexicon.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Lexicon/Auto.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Lexicon/Gettext.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Lexicon/Msgcat.pm
+/usr/lib/perl5/vendor_perl/5.28.1Locale/Maketext/Lexicon/Tie.pm
 
 %files bin
 %defattr(-,root,root,-)
