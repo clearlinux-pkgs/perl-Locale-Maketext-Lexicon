@@ -4,11 +4,11 @@
 #
 Name     : perl-Locale-Maketext-Lexicon
 Version  : 1.00
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DRTECH/Locale-Maketext-Lexicon-1.00.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DRTECH/Locale-Maketext-Lexicon-1.00.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblocale-maketext-lexicon-perl/liblocale-maketext-lexicon-perl_1.00-1.debian.tar.xz
-Summary  : 'Use other catalog formats in Maketext'
+Summary  : Perl/CPAN Module Locale::Maketext::Lexicon : Use other catalog formats in Maketext
 Group    : Development/Tools
 License  : GPL-2.0 MIT
 Requires: perl-Locale-Maketext-Lexicon-bin = %{version}-%{release}
@@ -26,7 +26,6 @@ version 1.00
 Summary: bin components for the perl-Locale-Maketext-Lexicon package.
 Group: Binaries
 Requires: perl-Locale-Maketext-Lexicon-license = %{version}-%{release}
-Requires: perl-Locale-Maketext-Lexicon-man = %{version}-%{release}
 
 %description bin
 bin components for the perl-Locale-Maketext-Lexicon package.
@@ -37,6 +36,7 @@ Summary: dev components for the perl-Locale-Maketext-Lexicon package.
 Group: Development
 Requires: perl-Locale-Maketext-Lexicon-bin = %{version}-%{release}
 Provides: perl-Locale-Maketext-Lexicon-devel = %{version}-%{release}
+Requires: perl-Locale-Maketext-Lexicon = %{version}-%{release}
 
 %description dev
 dev components for the perl-Locale-Maketext-Lexicon package.
@@ -63,7 +63,7 @@ man components for the perl-Locale-Maketext-Lexicon package.
 cd ..
 %setup -q -T -D -n Locale-Maketext-Lexicon-1.00 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Locale-Maketext-Lexicon-1.00/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Locale-Maketext-Lexicon-1.00/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
