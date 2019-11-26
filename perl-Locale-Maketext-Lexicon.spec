@@ -4,7 +4,7 @@
 #
 Name     : perl-Locale-Maketext-Lexicon
 Version  : 1.00
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DRTECH/Locale-Maketext-Lexicon-1.00.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DRTECH/Locale-Maketext-Lexicon-1.00.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblocale-maketext-lexicon-perl/liblocale-maketext-lexicon-perl_1.00-1.debian.tar.xz
@@ -15,6 +15,7 @@ Requires: perl-Locale-Maketext-Lexicon-bin = %{version}-%{release}
 Requires: perl-Locale-Maketext-Lexicon-license = %{version}-%{release}
 Requires: perl-Locale-Maketext-Lexicon-man = %{version}-%{release}
 Requires: perl-Locale-Maketext-Lexicon-perl = %{version}-%{release}
+Requires: perl(PPI)
 Requires: perl(Text::Haml)
 BuildRequires : buildreq-cpan
 
