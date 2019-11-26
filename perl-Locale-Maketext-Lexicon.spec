@@ -4,16 +4,18 @@
 #
 Name     : perl-Locale-Maketext-Lexicon
 Version  : 1.00
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DRTECH/Locale-Maketext-Lexicon-1.00.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DRTECH/Locale-Maketext-Lexicon-1.00.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblocale-maketext-lexicon-perl/liblocale-maketext-lexicon-perl_1.00-1.debian.tar.xz
-Summary  : Perl/CPAN Module Locale::Maketext::Lexicon : Use other catalog formats in Maketext
+Summary  : 'Use other catalog formats in Maketext'
 Group    : Development/Tools
 License  : GPL-2.0 MIT
 Requires: perl-Locale-Maketext-Lexicon-bin = %{version}-%{release}
 Requires: perl-Locale-Maketext-Lexicon-license = %{version}-%{release}
 Requires: perl-Locale-Maketext-Lexicon-man = %{version}-%{release}
+Requires: perl-Locale-Maketext-Lexicon-perl = %{version}-%{release}
+Requires: perl(Text::Haml)
 BuildRequires : buildreq-cpan
 
 %description
@@ -58,18 +60,28 @@ Group: Default
 man components for the perl-Locale-Maketext-Lexicon package.
 
 
+%package perl
+Summary: perl components for the perl-Locale-Maketext-Lexicon package.
+Group: Default
+Requires: perl-Locale-Maketext-Lexicon = %{version}-%{release}
+
+%description perl
+perl components for the perl-Locale-Maketext-Lexicon package.
+
+
 %prep
 %setup -q -n Locale-Maketext-Lexicon-1.00
-cd ..
-%setup -q -T -D -n Locale-Maketext-Lexicon-1.00 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/liblocale-maketext-lexicon-perl_1.00-1.debian.tar.xz
+cd %{_builddir}/Locale-Maketext-Lexicon-1.00
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Locale-Maketext-Lexicon-1.00/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Locale-Maketext-Lexicon-1.00/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -79,7 +91,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -88,8 +100,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/deblicense_copyright
+cp %{_builddir}/Locale-Maketext-Lexicon-1.00/LICENSE %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/82a1e27b375f6af0fef88443b16725d9729e81b5
+cp %{_builddir}/Locale-Maketext-Lexicon-1.00/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/354b6c96b8e93cffdd1bfe71b950acb0d11eabb5
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -102,23 +114,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/Base.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/FormFu.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/Generic.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/Haml.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/Mason.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/PPI.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/Perl.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/TT2.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/TextTemplate.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/YAML.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Run.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Lexicon.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Lexicon/Auto.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Lexicon/Gettext.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Lexicon/Msgcat.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Lexicon/Tie.pm
 
 %files bin
 %defattr(-,root,root,-)
@@ -146,9 +141,29 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/LICENSE
-/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/deblicense_copyright
+/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/354b6c96b8e93cffdd1bfe71b950acb0d11eabb5
+/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/82a1e27b375f6af0fef88443b16725d9729e81b5
 
 %files man
 %defattr(0644,root,root,0755)
 /usr/share/man/man1/xgettext.pl.1
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/Base.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/FormFu.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/Generic.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/Haml.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/Mason.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/PPI.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/Perl.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/TT2.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/TextTemplate.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Plugin/YAML.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Extract/Run.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Lexicon.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Lexicon/Auto.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Lexicon/Gettext.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Lexicon/Msgcat.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Locale/Maketext/Lexicon/Tie.pm
