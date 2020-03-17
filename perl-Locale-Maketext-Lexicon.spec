@@ -4,7 +4,7 @@
 #
 Name     : perl-Locale-Maketext-Lexicon
 Version  : 1.00
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DRTECH/Locale-Maketext-Lexicon-1.00.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DRTECH/Locale-Maketext-Lexicon-1.00.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblocale-maketext-lexicon-perl/liblocale-maketext-lexicon-perl_1.00-1.debian.tar.xz
@@ -102,7 +102,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon
 cp %{_builddir}/Locale-Maketext-Lexicon-1.00/LICENSE %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/82a1e27b375f6af0fef88443b16725d9729e81b5
-cp %{_builddir}/Locale-Maketext-Lexicon-1.00/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/354b6c96b8e93cffdd1bfe71b950acb0d11eabb5
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Locale-Maketext-Lexicon/354b6c96b8e93cffdd1bfe71b950acb0d11eabb5
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -151,20 +151,20 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract/Plugin/Base.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract/Plugin/FormFu.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract/Plugin/Generic.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract/Plugin/Haml.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract/Plugin/Mason.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract/Plugin/PPI.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract/Plugin/Perl.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract/Plugin/TT2.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract/Plugin/TextTemplate.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract/Plugin/YAML.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Extract/Run.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Lexicon.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Lexicon/Auto.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Lexicon/Gettext.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Lexicon/Msgcat.pm
-/usr/lib/perl5/vendor_perl/5.30.1/Locale/Maketext/Lexicon/Tie.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract/Plugin/Base.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract/Plugin/FormFu.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract/Plugin/Generic.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract/Plugin/Haml.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract/Plugin/Mason.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract/Plugin/PPI.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract/Plugin/Perl.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract/Plugin/TT2.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract/Plugin/TextTemplate.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract/Plugin/YAML.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Extract/Run.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Lexicon.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Lexicon/Auto.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Lexicon/Gettext.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Lexicon/Msgcat.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Locale/Maketext/Lexicon/Tie.pm
